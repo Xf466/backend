@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  db:
+    container_name: ${PG_CONTAINER}
+    image: ${PG_IMAGE}
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+  
+  pgadmin:
+    container_name: ${PGADMIN_CONTAINER}
+    image: ${PGADMIN_IMAGE}
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+    - db
+
+  api:
+    container_name: ${API_CONTAINER}
+    build: .
+    ports: 
+      - 8080:8080
+    environment:
+      PORT: 8080
+      DB_HOST: ${API_HOST}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      EXPIRY: ${EXPIRY}
+    # Comment out the volumes if you do not want it to be persistent
+    volumes:
+      - ./:/usr/src
+      - /usr/src/node_modules
+    depends_on:
+      - db
+
+volumes:
+  db:
+    driver: local
+  pgadmin-data:
+    driver: local
+  

@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Resend Email Verification | Target Catcher Server API</title>
+        <meta charset="utf-8">
+        <link rel="icon" href="images/ReferMe.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="styles/index.css">
+    </head>
+    <body> 
+        <h1 class="title">Target <span class="text-lightblue">Catcher</span></h1>
+        <% if (status === "ok") { %>
+            <img src="images/tick_symbol.png" alt="Ok">
+        <% } else if (status === "error") { %>
+            <img src="images/cross_symbol.png" alt="Error">
+        <% } else { %>
+            <img src="images/warning_symbol.png" alt="Warning">
+        <% } %>
+        <br><br>
+        <p> <%= message  %> </p>
+        
+    </body>
+</html>

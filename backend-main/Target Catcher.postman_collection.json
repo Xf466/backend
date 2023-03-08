@@ -1,0 +1,948 @@
+{
+	"info": {
+		"_postman_id": "e1dac5a3-a23a-48d7-84bb-9982c7168be7",
+		"name": "Target Catcher",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23350238"
+	},
+	"item": [
+		{
+			"name": "1.a. Sign up",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"accessToken\", responseData.accessToken);\r",
+							"pm.collectionVariables.set(\"userEmail\", \"s3842858@student.rmit.edu.au\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"John\",\r\n    \"lastName\" : \"Doe\",\r\n    \"password\" : \"{{userPassword}}\",\r\n    \"email\" : \"s3842858@student.rmit.edu.au\",\r\n    \"linkedinid\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/auth/signup",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(Extra) Sign up 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"accessToken\", responseData.accessToken);\r",
+							"pm.collectionVariables.set(\"userEmail\", \"jeremy.kwik@gmail.com\");\r",
+							"pm.collectionVariables.set(\"userPassword\", \"Password123!\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"Jeremy\",\r\n    \"lastName\" : \"Ng Kwik Tung\",\r\n    \"password\" : \"Password123!\",\r\n    \"email\" : \"jeremy.kwik@gmail.com\",\r\n    \"linkedinid\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/auth/signup",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.b. Sign in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"accessToken\", responseData.accessToken);\r",
+							"pm.collectionVariables.set(\"userId\", responseData.user_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"{{userEmail}}\",\r\n    \"password\" : \"{{userPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/auth/signin",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.a. Get User by email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"userId\", responseData.user_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NjM4NDMwNTgsImV4cCI6MTcyNjkxNTA1OH0.jpwgv0TLtflgJiVRBPodXnIs323DMzJPY5My-Tz0BBA",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/get/user/{{userEmail}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"get",
+						"user",
+						"{{userEmail}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.b. Update User Profile",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"Updated\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/user/update/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"update",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Create referral",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"referral_id\", responseData.referral_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"job_title\" : \"Software Developer\",\r\n    \"price\" : 10.25,\r\n    \"job_description\" : \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium ut ex vel porttitor. Vivamus sit amet nisi sed dui maxi-mus aliquam quis gravida lacus. Donec gravidaipsum vitae risus semper ornare. Ut vestibul-um sit amet tellus vel vehicula. \",\r\n    \"company\" : \"Goolgle Inc.\",\r\n    \"address\" : \"Australia\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/referral/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"referral",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(Extra) Create Referral 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"referral_id\", responseData.referral_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\" : \"{{user_id}}\",\r\n    \"job_title\" : \"title\",\r\n    \"price\" : 10.25,\r\n    \"job_description\" : \"description\",\r\n    \"company\" : \"company\",\r\n    \"address\" : \"address\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/referral/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"referral",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. Get referral",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/get/referral/{{referral_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"get",
+						"referral",
+						"{{referral_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.a. Get all referrals",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/get/referrals/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"get",
+						"referrals",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.b. Get all referrals of current user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/get/referrals/me",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"get",
+						"referrals",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.a. Search referral",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/search/referral/?job_title=Developer&location=Aus&company=In&asc=true",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"search",
+						"referral",
+						""
+					],
+					"query": [
+						{
+							"key": "job_title",
+							"value": "Developer"
+						},
+						{
+							"key": "location",
+							"value": "Aus"
+						},
+						{
+							"key": "company",
+							"value": "In"
+						},
+						{
+							"key": "asc",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6.b. Update Referral",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"job_title\" : \"Software Developer\",\r\n    \"price\" : 10.25,\r\n    \"job_description\" : \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium ut ex vel porttitor. Vivamus sit amet nisi sed dui maxi-mus aliquam quis gravida lacus. Donec gravidaipsum vitae risus semper ornare. Ut vestibul-um sit amet tellus vel vehicula. \",\r\n    \"company\" : \"Goolgle Inc.\",\r\n    \"skill\" : \"- hantup- wan la ba bi q la\",\r\n    \"salary\" : \"Starting from $25 an hour\",\r\n    \"address\" : \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pretium ut ex vel\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/referral/update/{{referral_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"referral",
+						"update",
+						"{{referral_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(Optional) Delete Referral",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/referral/delete/{{referral_id}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"referral",
+						"delete",
+						"{{referral_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7. Create Application",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"application_id\", responseData.application_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "cv_file",
+							"type": "file",
+							"src": "/C:/Users/jerem/Documents/RMIT/Year 3 Sem 2/Programming Project 1/TargetCatcher- Employee Referral platform.pdf"
+						},
+						{
+							"key": "referral_id",
+							"value": "{{referral_id}}",
+							"type": "text"
+						},
+						{
+							"key": "application_status",
+							"value": "pending",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/application/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"application",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8.a. Get Application",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/application/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"application",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{application_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8.b. Get Application CV",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/application/cv/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"application",
+						"cv",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{application_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8.c. Get all of my Applications",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/applications/me",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"applications",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8.d. Get all Applications by referral ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/applications/:referral_id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"applications",
+						":referral_id"
+					],
+					"variable": [
+						{
+							"key": "referral_id",
+							"value": "{{referral_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9.a. Accept Application",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/application/:status/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"application",
+						":status",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "status",
+							"value": "accept"
+						},
+						{
+							"key": "id",
+							"value": "{{application_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9.b. Decline Application",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/application/:status/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"application",
+						":status",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "status",
+							"value": "decline"
+						},
+						{
+							"key": "id",
+							"value": "{{application_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9.c. Cancel Application",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/application/cancel/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"application",
+						"cancel",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{application_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "(Optional) Delete Application",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/application/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"application",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{application_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10.a. Upload Proof",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "proof_file",
+							"type": "file",
+							"src": "/C:/Users/jerem/Documents/RMIT/Year 3 Sem 2/Programming Project 1/TargetCatcher- Employee Referral platform.pdf"
+						},
+						{
+							"key": "application_id",
+							"value": "{{application_id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/application/uploadproof",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"application",
+						"uploadproof"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10.b. Get Proof File",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/application/proof/:id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"application",
+						"proof",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{application_id}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11.a. Create rating",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let responseData = pm.response.json();\r",
+							"pm.collectionVariables.set(\"rating_id\", responseData.rating_id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"referral_id\": {{referral_id}},\r\n    \"application_id\": {{application_id}},\r\n    \"rating_score\": 1.2,\r\n    \"rating_feedback\": \"you suck\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/rating/create",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"rating",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11.b. Get rating",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/ratings/:user_id",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"ratings",
+						":user_id"
+					],
+					"variable": [
+						{
+							"key": "user_id",
+							"value": "{{userId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11.c. Get My Ratings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/ratings/me",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"ratings",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "tokenType",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "accessToken",
+				"value": "{{accessToken}}",
+				"type": "string"
+			},
+			{
+				"key": "headerPrefix",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "referral_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "accessToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTU3OTM1MzQ5LCJpYXQiOjE2NjM5OTkwODIsImV4cCI6MTY2NDA2MjE1NH0.C3caiXQ-e19wr01ejKFxFjeQ8DWj2G0GW7q1HZ6ti5g",
+			"type": "string"
+		},
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "userEmail",
+			"value": "fakeuser@targetcatcher.com",
+			"type": "string"
+		},
+		{
+			"key": "userPassword",
+			"value": "Password123!",
+			"type": "string"
+		},
+		{
+			"key": "userId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "application_id",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "file_name",
+			"value": "hello.txt",
+			"type": "string"
+		},
+		{
+			"key": "rating_id",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,49 @@
+:root {
+    --tw-text-opacity: 1;
+    --tw-bg-opacity: 1;
+}
+
+body {
+    font-family: Roboto,sans-serif;
+    color: rgb(10 76 123/var(--tw-text-opacity));
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+img {
+    height: 8rem;
+}
+
+.title {
+    font-size: 1.875rem;
+}
+
+.text-lightblue {
+    color: rgb(10 102 194/var(--tw-text-opacity));
+}
+
+button {
+    text-transform: capitalize;
+    color: rgb(10 102 194/var(--tw-text-opacity));
+    transition-duration: .5s;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    letter-spacing: .025em;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    border-width: 2px;
+    border-radius: .25rem;
+    border-color: rgb(10 102 194/var(--tw-text-opacity));
+    cursor: pointer;
+    background-color: rgb(255 255 255/var(--tw-bg-opacity));
+}
+
+button:hover {
+    color: rgb(255 255 255/var(--tw-text-opacity));
+    background-color: rgb(10 102 194/var(--tw-bg-opacity));
+}
